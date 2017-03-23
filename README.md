@@ -1,8 +1,12 @@
 # selenium-stuff
 gl selenium training
 
-run tests:
-```
-gradlew init
+run all tests:
+```gradle
 gradlew test
+```
+
+run single test:
+```gradle
+gradlew -Dtest.single=<TestClassName> test
 ```
