@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.NoSuchElementException;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import static org.junit.Assert.*;
 
@@ -12,10 +14,21 @@ public class Task4 {
 
     private WebDriver driver;
 
+    private boolean isElementPresent(By by) {
+        try {
+            driver.findElement(by);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
     @Before
     public void start() {
         ChromeDriverManager.getInstance().setup();
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        driver = new ChromeDriver(options);
         driver.get("http://localhost/litecart/admin/login.php");
         driver.findElement(By.name("username")).sendKeys("admin");
         driver.findElement(By.name("password")).sendKeys("admin");
@@ -43,12 +56,13 @@ public class Task4 {
                 for (int j = 1; j < sub_menus; j++) {
                     // click on sub menu item
                     driver.findElement(menu_l).findElements(menu_item_l).get(i).findElements(sub_menu_item_l).get(j).click();
+                    // verify that header exists in sub menu
+                    assertTrue("Page Title (h1 element) not found (sub menu)", isElementPresent(By.cssSelector("h1")));
                 }
             }
 
-            // verify that header exists
-            boolean header = driver.findElements(By.cssSelector("h1") ).size() != 0;
-            assertTrue(header);
+            // verify that header exists in menu
+            assertTrue("Page Title (h1 element) not found (main menu)", isElementPresent(By.cssSelector("h1")));
         }
     }
 
