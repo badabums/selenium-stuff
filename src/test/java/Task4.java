@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.NoSuchElementException;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import static org.junit.Assert.*;
 
@@ -15,12 +14,7 @@ public class Task4 {
     private WebDriver driver;
 
     private boolean isElementPresent(By by) {
-        try {
-            driver.findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
+        return driver.findElements(by).size() > 0;
     }
 
     @Before
