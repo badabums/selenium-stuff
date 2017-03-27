@@ -10,7 +10,7 @@ import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 
-public class MyFirstTest {
+public class Task1 {
 
     private WebDriver driver1, driver2;
     private WebDriverWait wait1, wait2;
@@ -26,7 +26,7 @@ public class MyFirstTest {
     }
 
     @Test
-    public void FirstTest() {
+    public void Task1Test() {
         driver1.get("http://www.google.com");
         driver1.findElement(By.name("q")).sendKeys("webdriver");
         driver1.findElement(By.name("btnG")).click();
