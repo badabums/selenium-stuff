@@ -13,4 +13,5 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile 'org.seleniumhq.selenium:selenium-java:3.3.1'
     testCompile 'io.github.bonigarcia:webdrivermanager:1.6.1'
+    testCompile 'ru.stqa.selenium:webdriver-factory:4.0'
 }
