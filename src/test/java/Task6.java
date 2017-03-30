@@ -46,7 +46,7 @@ public class Task6 {
     }
 
     @Test
-    public void Task4Test() {
+    public void Task6Test() {
 
         // product name
         String product_name = "Awesome duck!!!";
