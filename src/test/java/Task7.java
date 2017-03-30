@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.*;
 
 
@@ -30,6 +31,7 @@ public class Task7 {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 10);
         driver.get("http://localhost/litecart/");
     }
@@ -38,7 +40,7 @@ public class Task7 {
     public void Task7Test() {
 
         // number of products to add
-        int products_num = 3;
+        int products_num = 10;
 
         // some locators
         By add_button_l = By.name("add_cart_product");
@@ -55,20 +57,13 @@ public class Task7 {
         // add 3 products to the cart
         for (int i = 1; i < products_num + 1; i++) {
 
-            // wait for presence of log (using it to navigate to home page)
-            wait.until(ExpectedConditions.presenceOfElementLocated(logo_l));
+            // open home page
             driver.findElement(logo_l).click();
-
-            // wait for products
-            wait.until(ExpectedConditions.presenceOfElementLocated(product_l));
 
             // open random product
             List<WebElement> products = driver.findElements(product_l);
             any_product = rand.nextInt(products.size());
             products.get(any_product).click();
-
-            // wait for 'Add To Cart' button
-            wait.until(ExpectedConditions.presenceOfElementLocated(add_button_l));
 
             // locate cart quantity element
             cart_quantity = driver.findElement(cart_quantity_l);
@@ -89,7 +84,6 @@ public class Task7 {
 
         // open the cart
         driver.findElement(By.cssSelector("a.content")).click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(item_l));
 
         // since there can be the same products in the cart, count them in the table
         // then delete one by one (same items delete by single action)
@@ -102,7 +96,6 @@ public class Task7 {
         // verify number of products in the cart is 0 (double check)
         assertTrue("No message about empty cart", isElementPresent(By.id("checkout-cart-wrapper")));
         driver.findElement(logo_l).click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(cart_quantity_l));
         int in_the_cart = Integer.parseInt(driver.findElement(cart_quantity_l).getText());
         assertTrue("There are some products in the cart", in_the_cart == 0);
     }
