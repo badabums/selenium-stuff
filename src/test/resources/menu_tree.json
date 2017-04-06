@@ -1,0 +1,72 @@
+{
+  "Orders": [
+    "Orders",
+    "Order Statuses"
+  ],
+  "Countries": [],
+  "Modules": [
+    "Background Jobs",
+    "Customer",
+    "Shipping",
+    "Payment",
+    "Order Total",
+    "Order Success",
+    "Order Action"
+  ],
+  "Slides": [],
+  "vQmods": [
+    "vQmods"
+  ],
+  "Reports": [
+    "Monthly Sales",
+    "Most Sold Products",
+    "Most Shopping Customers"
+  ],
+  "Languages": [
+    "Languages",
+    "Storage Encoding"
+  ],
+  "Tax": [
+    "Tax Classes",
+    "Tax Rates"
+  ],
+  "Appearence": [
+    "Template",
+    "Logotype"
+  ],
+  "Users": [],
+  "Catalog": [
+    "Catalog",
+    "Product Groups",
+    "Option Groups",
+    "Manufacturers",
+    "Suppliers",
+    "Delivery Statuses",
+    "Sold Out Statuses",
+    "Quantity Units",
+    "CSV Import\/Export"
+  ],
+  "Currencies": [],
+  "Geo Zones": [],
+  "Pages": [],
+  "Customers": [
+    "Customers",
+    "CSV Import\/Export",
+    "Newsletter"
+  ],
+  "Translations": [
+    "Search Translations",
+    "Scan Files",
+    "CSV Import\/Export"
+  ],
+  "Settings": [
+    "Store Info",
+    "Defaults",
+    "General",
+    "Listings",
+    "Images",
+    "Checkout",
+    "Advanced",
+    "Security"
+  ]
+}

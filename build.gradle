@@ -14,4 +14,5 @@ dependencies {
     testCompile 'org.seleniumhq.selenium:selenium-java:3.3.1'
     testCompile 'io.github.bonigarcia:webdrivermanager:1.6.1'
     testCompile 'ru.stqa.selenium:webdriver-factory:4.0'
+    testCompile 'com.googlecode.json-simple:json-simple:1.1.1'
 }
