@@ -10,12 +10,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-
 import static org.junit.Assert.*;
 
 
