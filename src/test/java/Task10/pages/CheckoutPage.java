@@ -1,7 +1,13 @@
 package Task10.pages;
+import org.openqa.selenium.WebDriver;
 
-/**
- * Created by bogdan.lykhyi on 4/13/2017.
- */
-public class CheckoutPage {
+
+public class CheckoutPage extends Page {
+
+    public CheckoutPage(WebDriver driver) {
+        super(driver);
+        this.driver = driver;
+    }
+
+
 }
