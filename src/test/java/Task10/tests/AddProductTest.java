@@ -4,6 +4,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertTrue;
+
+
 public class AddProductTest {
 
     private Application app;
@@ -16,14 +19,9 @@ public class AddProductTest {
 
     @Test
     public void Task10Test() {
-        app.openProduct();
-        System.out.print("debug");
-        app.addProductToCart();
-        System.out.print("debug");
-        Integer ss = app.getProductsInCart();
-        System.out.print(ss);
-        System.out.print("debug");
-
+        app.addProductsToCart(3);
+        app.deleteProductsFromCart();
+        assertTrue("There are some products in the cart", app.isCartEmpty());
     }
 
     @After

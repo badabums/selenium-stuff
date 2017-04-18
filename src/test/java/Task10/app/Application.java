@@ -1,5 +1,4 @@
 package Task10.app;
-
 import Task10.pages.CheckoutPage;
 import Task10.pages.MainPage;
 import Task10.pages.ProductPage;
@@ -7,9 +6,6 @@ import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
 
 
 public class Application {
@@ -27,25 +23,35 @@ public class Application {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        driver.navigate().to(baseUrl);
+        openMainPage();
         mainPage = new MainPage(driver);
         productPage = new ProductPage(driver);
-//        wait = new WebDriverWait(driver, 10);
-//        driver.get("http://localhost/litecart/");
-
+        checkoutPage = new CheckoutPage(driver);
     }
 
-    public void openProduct() {
-        mainPage.openProduct();
+    private void openMainPage() {
+        driver.navigate().to(baseUrl);
     }
 
-    public void addProductToCart() {
-        productPage.addProductToCart();
+    public void addProductsToCart(Integer numOfProducts) {
+        for (int i = 1; i <= numOfProducts; i++) {
+            mainPage.openProduct();
+            productPage.addProductToCart();
+            openMainPage();
+        }
     }
 
-    public Integer getProductsInCart() {
-        return  mainPage.getProductsInCart();
+    public void deleteProductsFromCart() {
+        mainPage.openCart();
+        while (checkoutPage.getItemsInOrder() > 0) {
+            checkoutPage.deleteProduct();
+        }
+        checkoutPage.waitForEmptyCart();
+    }
+
+    public boolean isCartEmpty() {
+        openMainPage();
+        return mainPage.getProductsInCart() == 0;
     }
 
     public void stop() {

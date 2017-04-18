@@ -4,32 +4,32 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+
 
 public class ProductPage extends Page {
 
-
+    final String selectSize = "select[name*=options]";
     @FindBy(name = "add_cart_product")
     WebElement addProductButton;
-    @FindBy(css = "select[name*=options]")
-    Select size;
+    @FindBy(css = selectSize)
+    WebElement size;
+
+    MainPage mainPage;
 
     public ProductPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        mainPage = new MainPage(driver);
     }
 
     public void addProductToCart() {
-        addProductButton.click();
-        By size_l = By.cssSelector("select[name*=options]");
-
-        if (isElementPresent(size_l)) {
-            size.selectByIndex(0);
-//            Select product_size = new Select(driver.findElement(size_l));
-//            int any_size = rand.nextInt(product_size.getOptions().size() - 1) + 1;
-//            product_size.selectByIndex(any_size);
+        if (isElementPresent(By.cssSelector(selectSize))) {
+            new Select(size).selectByIndex(1);
         }
+        addProductButton.click();
+        int cartQuantity = mainPage.getProductsInCart();
+        wait.until(ExpectedConditions.textToBePresentInElement(mainPage.cartQuantity, Integer.toString(cartQuantity + 1)));
     }
-
-
 }
